@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ScheduleXamarin"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms"
+             xmlns:syncTheme="clr-namespace:Syncfusion.XForms.Themes;assembly=Syncfusion.Core.XForms"
+             x:Class="ScheduleXamarin.MainPage">
+
+    <ContentPage.Behaviors>
+        <local:ScheduleBehavior/>
+    </ContentPage.Behaviors>
+    <ContentPage.BindingContext>
+        <local:SchedulerViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <syncfusion:SfSchedule x:Name="schedule" ScheduleView="WorkWeekView" 
+                                   AllowAppointmentDrag="True"
+                                   ShowAppointmentsInline="true" DataSource="{Binding Meetings}"
+            >
+                <syncfusion:SfSchedule.WeekViewSettings>
+                    <syncfusion:WeekViewSettings ShowAllDay="True" />
+                </syncfusion:SfSchedule.WeekViewSettings>
+                <syncfusion:SfSchedule.AppointmentMapping>
+                    <syncfusion:ScheduleAppointmentMapping
+                    SubjectMapping="EventName"
+			        StartTimeMapping="From"
+			        EndTimeMapping="To"
+                    IsAllDayMapping="AllDay">
+                    </syncfusion:ScheduleAppointmentMapping>
+                </syncfusion:SfSchedule.AppointmentMapping>
+            </syncfusion:SfSchedule>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
